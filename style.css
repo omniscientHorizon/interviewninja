@@ -61,6 +61,10 @@ button:hover{
     margin:20px auto;
 }
 
+#pink{
+	color: rgb(255, 0, 150) 
+}
+
 .warning {background: #ffcc66;}
 .fail {background: #ff9999;}
 
