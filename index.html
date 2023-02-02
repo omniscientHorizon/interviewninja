@@ -1,118 +1,116 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>InterviewNinja</title>
-<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
-<link rel="stylesheet" type="text/css" href="style.css" />
-<link rel="icon" href="./favicon.ico" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta name="title" content="InterviewNinja" />
+    <title>InterviewNinja</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="./favicon.ico" />
+
+    <meta name="title" content="InterviewNinja" />
     <meta name="description" content="Making College Interview Prep easy" />
 
-<!-- Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://omniscienthorizon.com/">
-    <meta property="og:title" content="InterviewNinja">
-    <meta property="og:description" content="Make College Interview Prep easy as pie!">
-    <meta property="og:image" content="https://interviewninja.xyz//1.png">
-	 <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://interviewninja.xyz/">
-    <meta property="twitter:title" content="InterviewNinja">
-    <meta property="twitter:description" content="Make College Interview easy as pie!">
-     <meta property="twitter:image" content="https://interviewninja.xyz//1.png">
+    <!-- Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://omniscienthorizon.com/" />
+    <meta property="og:title" content="InterviewNinja" />
+    <meta property="og:description" content="Make College Interview Prep easy as pie!" />
+    <meta property="og:image" content="https://interviewninja.xyz//1.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://interviewninja.xyz/" />
+    <meta property="twitter:title" content="InterviewNinja" />
+    <meta property="twitter:description" content="Make College Interview easy as pie!" />
+    <meta property="twitter:image" content="https://interviewninja.xyz//1.png" />
 
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="functions.js"></script>
+    <script type="text/javascript">
+      let timer = 15;
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-<script type="text/javascript" src="data.js"></script>
-<script type="text/javascript" src="functions.js"></script>
-<script type="text/javascript">
-var timer = 15;
+      // Randomise Questions & Tips
+      q.sort(function () {
+        return 0.5 - Math.random();
+      });
+      tips.sort(function () {
+        return 0.5 - Math.random();
+      });
 
+      // End Questions
+      q.push("done");
 
-// Randomise Questions & Tips
-q.sort(function() {return 0.5 - Math.random()})
-tips.sort(function() {return 0.5 - Math.random()})
+      $(document).ready(function () {
+        next_q();
+        timer_tick();
+        display_tip();
+      });
 
+      // $(document).keypress(function(e) {
 
-// End Questions
-q.push('done');
+      // 	switch (e.which)
+      // 	{
+      // 		case 13:
+      // 			// Next Question - Return (13)
+      // 			next_q();
+      // 			break;
 
+      // 		case 32:
+      // 			// Restart Timer - Space (32)
+      // 			timer_restart();
+      // 			break;
 
-$(document).ready(function(){
-	next_q();
-	timer_tick();
-	display_tip();
-});
+      // 		case 110:
+      // 			// Doesn't Do Anything, Move Along
+      // 			$('body').append('<div class="egg"><iframe width="420" height="315" src="http://www.youtube.com/embed/QH2-TGUlwu4?autoplay=1" frameborder="0" allowfullscreen></iframe></div>');
+      // 			break;
 
+      // 	}
+      // });
+    </script>
+  </head>
+  <body>
+    <!-- Message to be Displayed when out of questions -->
+    <div id="end" class="hide">
+      <h1>You have reached the end of questions</h1>
+      <h2>Hopefully you will be a little more ready for your college interview, good luck! :)</h2>
 
+      <p>
+        if you have any questions, feel free to reach out to me<a id="pink" href="mailto:omniscienthorizon@gmail.com">
+          say hi 👋</a
+        >
+      </p>
 
-// $(document).keypress(function(e) {
+      <p>
+        Check out
+        <a id="pink" href="https://www.collegeessayguy.com/blog/college-interview#L=" target="_blank">this amazing guide</a>
+        by College Essay Guy.
+      </p>
+    </div>
 
-// 	switch (e.which)
-// 	{
-// 		case 13:
-// 			// Next Question - Return (13)
-// 			next_q();
-// 			break;
+    <!-- Question Display --->
+    <div id="question">&nbsp;</div>
 
-// 		case 32:
-// 			// Restart Timer - Space (32)
-// 			timer_restart();
-// 			break;
+    <!-- Timer -->
+    <div id="timer">Timer</div>
 
-// 		case 110:
-// 			// Doesn't Do Anything, Move Along
-// 			$('body').append('<div class="egg"><iframe width="420" height="315" src="http://www.youtube.com/embed/QH2-TGUlwu4?autoplay=1" frameborder="0" allowfullscreen></iframe></div>');
-// 			break;
+    <!-- Dissapointed Paul Graham -->
+    <div class="pg hide">
+      <img src="pg.jpg" width="400" height="300" />
+    </div>
 
-// 	}
-// });
-</script>
+    <!-- Tips Display -->
+    <div class="tip"><strong>ProTip:</strong> <span id="tip">&nbsp;</span></div>
 
-</head>
-<body>
+    <div id="buttons">
+      <p>check out the demo <a href="https://www.youtube.com/watch?v=oUMSHF_Yg80" target="_blank">here</a></p>
+    </div>
 
-<!-- Message to be Displayed when out of questions -->
-<div id="end" class="hide">
-	<h1>You have reached the end of questions</h1>
-	<h2>Hopefully you will be a little more ready for your college interview, good luck! :)</h2>
-	
-	<p>if you have any questions, feel free to reach out to me<a id = 'pink'href='mailto:omniscienthorizon@gmail.com'> say hi 👋</a></p>
-
-	<p>Check out <a id = 'pink' href="https://www.collegeessayguy.com/blog/college-interview#L=" target="_blank">this amazing guide</a> by College Essay Guy.</p>
-</div>
-
-
-<!-- Question Display --->
-<div id="question">
-	&nbsp;
-</div>
-
-
-<!-- Timer -->
-<div id="timer">
-	Timer
-</div>
-
-
-<!-- Dissapointed Paul Graham -->
-<div class="pg hide">
-	<img src="pg.jpg" width="400" height="300" />
-</div>
-
-
-<!-- Tips Display -->
-<div class="tip">
-	<strong>ProTip:</strong> <span id="tip">&nbsp;</span>
-</div>
-
-<div id="buttons">
-    <p>check out the demo <a href='https://www.youtube.com/watch?v=oUMSHF_Yg80'target="_blank">here</a></p>
-</div>
-
-<!-- Keyboard Control Reference -->
-<!-- <div class="controls">
+    <!-- Keyboard Control Reference -->
+    <!-- <div class="controls">
 	<h1>Key Controls</h1>
 
 	<div class="key key-space">space</div>
@@ -122,21 +120,18 @@ $(document).ready(function(){
 	<div class="act">to next question</div>
 </div> -->
 
-<div id="buttons">
-    <button onclick="next_q()">Next</button>
-    <button onclick="timer_restart()">Restart timer</button>
-</div>
+    <div id="buttons">
+      <button onclick="next_q()">Next</button>
+      <button onclick="timer_restart()">Restart timer</button>
+    </div>
 
-
-<!-- Footer -->
-<div class="footer">
-	Built by
-	<a href="https://twitter.com/OmniscientHrzn" target='_blank'>Kshitij Agarwal</a><br>
-    Inspired by
-	<a href="https://jamescun.com/" target='_blank'>James Cunningham</a> and
-	<a href="https://entrevate.com/" target='_blank'>Colin Hayhurst</a>
-
-</div>
-
-</body>
+    <!-- Footer -->
+    <div class="footer">
+      Built by
+      <a href="https://twitter.com/OmniscientHrzn" target="_blank">Kshitij Agarwal</a><br />
+      Inspired by
+      <a href="https://jamescun.com/" target="_blank">James Cunningham</a> and
+      <a href="https://entrevate.com/" target="_blank">Colin Hayhurst</a>
+    </div>
+  </body>
 </html>
